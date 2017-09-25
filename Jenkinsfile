@@ -22,7 +22,7 @@ private void checkout(String repo){
 }
 
 private void createDockerImage( String imageName ){
-	sh 'sudo docker build -t $imageName .'
+	sh 'sudo docker build -t my_tomcat .'
 }
 
 private void runDockerContainer(){
