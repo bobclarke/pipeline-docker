@@ -19,3 +19,11 @@ private void my_checkout(String repo){
         ])
     }
 }
+
+private void createDockerImage(){
+	sh 'sudo docker build -t my_tomcat .'
+}
+
+private void runDockerContainer(){
+	sh 'sudo docker run -p 9999:8080 -d --name tomcat my_tomcat.'
+}
