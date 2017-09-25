@@ -5,6 +5,7 @@ node(){
 
     checkout(repo)
     createDockerImage("my_tomcat")
+    runDockerContainer("tomcat")
 }
 
 private void checkout(String repo){
@@ -22,11 +23,13 @@ private void checkout(String repo){
 }
 
 private void createDockerImage( String imageName ){
-	stage('Create Docker Image'){
+	stage('Create Docker image'){
 		sh 'sudo docker build -t my_tomcat .'
 	}
 }
 
-private void runDockerContainer(){
-	sh 'sudo docker run -p 9999:8080 -d --name tomcat my_tomcat.'
+private void runDockerContainer(String containerName){
+	stage('Run Docker container'){
+		sh 'sudo docker run -p 9999:8080 -d --name tomcat my_tomcat.'
+	}
 }
