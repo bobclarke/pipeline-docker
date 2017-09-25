@@ -4,7 +4,7 @@ node(){
     String repo = 'https://github.com/bobclarke/pipeline-docker.git'
 
     checkout(repo)
-    checkout("my_tomcat")
+    createDockerImage("my_tomcat")
 }
 
 private void checkout(String repo){
