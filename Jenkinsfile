@@ -3,11 +3,12 @@ node(){
     String jdkTool = tool name: 'JDK8', type: 'hudson.model.JDK'
     String repo = 'https://github.com/bobclarke/pipeline-docker.git'
 
-    my_checkout(repo)
+    checkout(repo)
+    checkout("my_tomcat")
 }
 
-private void my_checkout(String repo){
-    stage('test_checkout'){
+private void checkout(String repo){
+    stage('checkout'){
         println "Checking out code"
         checkout([
             $class: 'GitSCM',
@@ -20,8 +21,8 @@ private void my_checkout(String repo){
     }
 }
 
-private void createDockerImage(){
-	sh 'sudo docker build -t my_tomcat .'
+private void createDockerImage( String imageName ){
+	sh 'sudo docker build -t $imageName .'
 }
 
 private void runDockerContainer(){
